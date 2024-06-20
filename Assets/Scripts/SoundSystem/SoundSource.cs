@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static UnityEngine.Rendering.DebugUI;
 using Random = UnityEngine.Random;
 
 [RequireComponent(typeof(AudioSource))]
@@ -56,8 +57,13 @@ public class SoundSource : MonoBehaviour
         SoundManager.Instance.ReturnToPool(this);
     }
 
-    public void SetPitchValue(float value)
+    public void SetVariationValues(float pitchValue, float volumeValue)
     {
-        audioSource.pitch = value;
+        
+        audioSource.pitch = pitchValue;
+        audioSource.volume = volumeValue;
     }
+
+
+    
 }

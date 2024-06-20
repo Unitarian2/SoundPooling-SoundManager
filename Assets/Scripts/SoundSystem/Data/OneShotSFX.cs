@@ -11,4 +11,15 @@ public class OneShotSFX : ScriptableObject
     public bool loop;
     public bool playOnAwake;
     public bool frequentSound;
+
+    [SerializeField]
+    [MinMaxRange(0, 1)]
+    RangedFloat volume = new RangedFloat(.8f, .8f);
+
+    [SerializeField]
+    [MinMaxRange(0, 2)]
+    RangedFloat pitch = new RangedFloat(.95f, 1.05f);
+
+    public RangedFloat Volume => volume;
+    public RangedFloat Pitch => pitch;
 }

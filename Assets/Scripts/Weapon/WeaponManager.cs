@@ -118,10 +118,10 @@ public class WeaponManager : MonoBehaviour
     private void PlayWeaponFireSound()
     {
         SoundManager.Instance.CreateSound()
-            .SetOneShotSFX(weaponGunShotSound)
             .SetPosition(barrelPos.position)
-            .WithRandomPitch()
-            .Play();
+            .WithRandomPitch(weaponGunShotSound.Pitch.MinValue, weaponGunShotSound.Pitch.MaxValue)
+            .WithRandomVolume(weaponGunShotSound.Volume.MinValue, weaponGunShotSound.Volume.MaxValue)
+            .Play(weaponGunShotSound);
             
     }
 
