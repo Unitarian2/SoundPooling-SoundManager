@@ -4,11 +4,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Pool;
 
+
 public class SoundManager : Singleton<SoundManager>
 {
     private IObjectPool<SoundSource> soundSourcePool;
     private readonly List<SoundSource> activeSoundSources = new();
-    public readonly Dictionary<OneShotSFX, int> oneShotCounts = new();
+    public readonly LinkedList<SoundSource> frequentSoundSources = new();
+
 
     [Header("Prefab")]
     [SerializeField] private SoundSource soundSourcePrefab;
@@ -23,6 +25,8 @@ public class SoundManager : Singleton<SoundManager>
     {
         InitalizePool();
     }
+
+    public SoundBuilder CreateSound() => new SoundBuilder(this);
 
     private void InitalizePool()
     {
@@ -51,6 +55,11 @@ public class SoundManager : Singleton<SoundManager>
 
     private void OnReturnedToPool(SoundSource soundSource)
     {
+        if (soundSource.Node != null)
+        {
+            frequentSoundSources.Remove(soundSource.Node);
+            soundSource.Node = null;
+        }
         soundSource.gameObject.SetActive(false);
         activeSoundSources.Remove(soundSource);
     }
@@ -72,14 +81,23 @@ public class SoundManager : Singleton<SoundManager>
 
     public bool CanPlaySound(OneShotSFX oneShotSFX)
     {
-        if(oneShotCounts.TryGetValue(oneShotSFX, out var count))
-        {
-            if(count >= maxSoundInstances)
-            {
-                return false;
-            }
-        }
+        if (!oneShotSFX.frequentSound) return true;
 
+        if (frequentSoundSources.Count >= maxSoundInstances)
+        {
+            try
+            {
+                frequentSoundSources.First.Value.Stop();
+                return true;
+            }
+            catch
+            {
+                Debug.Log("SoundSource is already released");
+            }
+            return false;
+        }
         return true;
     }
+
+    
 }

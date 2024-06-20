@@ -3,10 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
+[RequireComponent(typeof(AudioSource))]
 public class SoundSource : MonoBehaviour
 {
+    public OneShotSFX Data {  get; private set; }
     AudioSource audioSource;
     Coroutine playingCoroutine;
+    public LinkedListNode<SoundSource> Node { get; set; }
 
     private void Awake()
     {
@@ -17,6 +20,7 @@ public class SoundSource : MonoBehaviour
 
     public void Initialize(OneShotSFX oneShotSFX)
     {
+        Data = oneShotSFX;
         audioSource.clip = oneShotSFX.clip;
         audioSource.outputAudioMixerGroup = oneShotSFX.mixerGroup;
         audioSource.loop = oneShotSFX.loop;
@@ -25,7 +29,7 @@ public class SoundSource : MonoBehaviour
 
     public void Play()
     {
-        if(playingCoroutine != null)
+        if (playingCoroutine != null)
         {
             StopCoroutine(playingCoroutine);
         }
@@ -37,12 +41,12 @@ public class SoundSource : MonoBehaviour
     IEnumerator WaitForSoundToEnd()
     {
         yield return new WaitWhile(() => audioSource.isPlaying);
-        SoundManager.Instance.ReturnToPool(this);
+        Stop();
     }
 
     public void Stop()
     {
-        if(playingCoroutine != null)
+        if (playingCoroutine != null)
         {
             StopCoroutine(playingCoroutine);
             playingCoroutine = null;
@@ -50,5 +54,10 @@ public class SoundSource : MonoBehaviour
 
         audioSource.Stop();
         SoundManager.Instance.ReturnToPool(this);
+    }
+
+    public void SetPitchValue(float value)
+    {
+        audioSource.pitch = value;
     }
 }

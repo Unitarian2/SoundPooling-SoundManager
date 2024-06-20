@@ -12,7 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ebb50db494b8d6548927a6631e77c53b, type: 3}
   m_Name: M4_Gunshot
   m_EditorClassIdentifier: 
-  clip: {fileID: 0}
-  mixerGroup: {fileID: 0}
+  clip: {fileID: 8300000, guid: 105d8794241c33049870fb7f218a7047, type: 3}
+  mixerGroup: {fileID: 5886300737716813837, guid: 1c6f35019580aaa49848ae16531d4c77,
+    type: 2}
   loop: 0
   playOnAwake: 0
+  frequentSound: 1

@@ -2690,6 +2690,56 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 835655022}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1368904113
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1368904115}
+  - component: {fileID: 1368904114}
+  m_Layer: 0
+  m_Name: SoundManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1368904114
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1368904113}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 058f8fc8a8ab35e499a934d37a47d327, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  soundSourcePrefab: {fileID: 7824987549796935431, guid: 97eb94aef1075a140b168fd4252da7a3,
+    type: 3}
+  collectionCheck: 1
+  defaultCapacity: 10
+  maxPoolSize: 100
+  maxSoundInstances: 15
+--- !u!4 &1368904115
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1368904113}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 11
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1407395743
 GameObject:
   m_ObjectHideFlags: 0
@@ -3861,6 +3911,17 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 90
       objectReference: {fileID: 0}
+    - target: {fileID: 8332337461004400974, guid: 21c724424f79cb14f93ea6656b2d1152,
+        type: 3}
+      propertyPath: fireRate
+      value: 0.13
+      objectReference: {fileID: 0}
+    - target: {fileID: 8332337461004400974, guid: 21c724424f79cb14f93ea6656b2d1152,
+        type: 3}
+      propertyPath: weaponGunShotSound
+      value: 
+      objectReference: {fileID: 11400000, guid: 9346ec25d8be61e48b452943b7a91d87,
+        type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -8682,7 +8743,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a2a286910aa0e7c419615a50faa66bb5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fireRate: 0.12
+  fireRate: 0.11
   semiAuto: 0
   bullet: {fileID: 5881761704162709769, guid: a585d46e5ac945d49878b76007e2404a, type: 3}
   barrelPos: {fileID: 7637569192220785830}
@@ -8690,7 +8751,7 @@ MonoBehaviour:
   bulletsPerShot: 1
   weaponBulletDamage: 20
   weaponBulletKickBackForce: 100
-  weaponGunShotSound: {fileID: 0}
+  weaponGunShotSound: {fileID: 11400000, guid: 00a3df107c5abef4d9806e4a61899938, type: 2}
   gunShotSound: {fileID: 8300000, guid: f7a99641aaa885543bfd6e0124605c89, type: 3}
   audioSource: {fileID: 0}
   lightReturnSpeed: 20

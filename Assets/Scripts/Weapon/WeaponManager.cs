@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -97,7 +98,9 @@ public class WeaponManager : MonoBehaviour
         barrelPos.LookAt(aimManager.aimPos);
         barrelPos.localEulerAngles = bloom.BloomAngle(barrelPos);
 
-        audioSource.PlayOneShot(gunShotSound);
+        PlayWeaponFireSound();
+
+        //audioSource.PlayOneShot(gunShotSound);
         recoil.TriggerRecoil();
         TriggerMuzzleFlash();
         
@@ -110,6 +113,16 @@ public class WeaponManager : MonoBehaviour
             Rigidbody rb = currentBullet.GetComponent<Rigidbody>();
             rb.AddForce(barrelPos.forward * bulletVelocity, ForceMode.Impulse);
         }
+    }
+
+    private void PlayWeaponFireSound()
+    {
+        SoundManager.Instance.CreateSound()
+            .SetOneShotSFX(weaponGunShotSound)
+            .SetPosition(barrelPos.position)
+            .WithRandomPitch()
+            .Play();
+            
     }
 
     void TriggerMuzzleFlash()

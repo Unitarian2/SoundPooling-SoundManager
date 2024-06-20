@@ -10,4 +10,5 @@ public class OneShotSFX : ScriptableObject
     public AudioMixerGroup mixerGroup;
     public bool loop;
     public bool playOnAwake;
+    public bool frequentSound;
 }
